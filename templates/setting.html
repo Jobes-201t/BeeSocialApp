@@ -1,12 +1,12 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static 'assets/images/favicon.png' %}" rel="icon" type="image/png">
-    <title>Settings</title>
+    <title>Configuración</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'assets/css/icons.css' %}">
@@ -25,8 +25,8 @@
 
             <div class="container m-auto"> 
 
-                <h1 class="text-2xl leading-none text-gray-900 tracking-tight mt-3"> Account Setting </h1>
-                <ul class="mt-5 -mr-3 flex-nowrap lg:overflow-hidden overflow-x-scroll uk-tab">
+                <h1 class="text-2xl leading-none text-gray-900 tracking-tight mt-3"><a href="/">Inicio</a> /Configuración de cuenta para <b>{{user.email}}</b> </h1>
+                <!-- <ul class="mt-5 -mr-3 flex-nowrap lg:overflow-hidden overflow-x-scroll uk-tab">
                     <li class="uk-active"><a href="#">General</a></li>
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">Privacy</a></li>
@@ -34,38 +34,47 @@
                     <li><a href="#">Social links</a></li>
                     <li><a href="#">Billing</a></li>
                     <li><a href="#">Security</a></li>
-                </ul>
-
+                </ul> -->
+                <br>
+                <hr>
                 <div class="grid lg:grid-cols-3 mt-12 gap-8">
                     <div>
-                        <h3 class="text-xl mb-2"> Basic</h3>
+                        <h3 class="text-xl mb-2"> General</h3>
                         <p></p>
                     </div>
                     <div class="bg-white rounded-md lg:shadow-lg shadow col-span-2">
     
-                       <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
-                           <div>
-                               <label for=""> First name</label>
+                       <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
+                           <!-- <div>
+                               <label for=""> Nombre </label>
                                <input type="text" placeholder="Your name.." class="shadow-none bg-gray-100">
                            </div>
                            <div>
-                               <label for=""> Last name</label>
+                               <label for=""> Apellidos</label>
                                <input type="text" placeholder="Your name.." class="shadow-none bg-gray-100">
                             </div>
                             <div class="col-span-2">
                                 <label for=""> Email</label>
                                 <input type="text" placeholder="Your name.." class="shadow-none bg-gray-100">
-                            </div>
+                            </div> -->
+                            
                             <div class="col-span-2">
-                                <label for="about">About me</label>  
-                                <textarea id="about" name="about" rows="3"  class="shadow-none bg-gray-100"></textarea>
+                                <label for="">Profile Image</label>
+                                <img width="150" height="150" src="{{user_profile.profileimg.url}}" alt="">
+                                <input type="file" name="image" value="" class="shadow-none bg-gray-100">
                             </div> 
                             <div class="col-span-2">
-                                <label for=""> Location</label>
-                                <input type="text" placeholder="" class="shadow-none bg-gray-100">
+                                <label for="about">Biografía</label>  
+                                <textarea id="about" name="bio" rows="3"  class="shadow-none bg-gray-100">{{user_profile.bio}}</textarea>
+                            </div> 
+                            <div class="col-span-2">
+                                <label for=""> Locación</label>
+                                <input type="text" name="location" value="{{user_profile.location}}" class="shadow-none bg-gray-100">
                             </div>
-                            <div>
-                               <label for=""> Working at</label>
+                            <!-- <div>
+                               <label for=""> Trabajando en</label>
                                <input type="text" placeholder="" class="shadow-none bg-gray-100">
                             </div> 
                             <div>
@@ -77,18 +86,18 @@
                                 <option value="3">Married</option>
                                 <option value="4">Engaged</option>
                               </select>
-                            </div>
+                            </div> -->
                        </div> 
     
                        <div class="bg-gray-10 p-6 pt-0 flex justify-end space-x-3">
-                           <button class="p-2 px-4 rounded bg-gray-50 text-red-500"> Cancel </button>
-                           <button type="button" class="button bg-blue-700"> Save </button>
+                           <button class="p-2 px-4 rounded bg-gray-50 text-red-500"> <a href="/">Cancelar</a></button>
+                           <button type="submit" class="button bg-blue-700"> Save </button>
                        </div>
-    
+                    </form>
                     </div>
 
                     <div>
-                        <h3 class="text-xl mb-2"> Privacy</h3>
+                        <h3 class="text-xl mb-2"> Privacidad</h3>
                         <p> </p>
                     </div>
                     <div class="bg-white rounded-md lg:shadow-lg shadow lg:p-6 p-4 col-span-2">
@@ -96,7 +105,7 @@
                     <div class="space-y-3">
                         <div class="flex justify-between items-center">
                             <div>
-                                <h4> Who can follow me ?</h4>
+                                <h4> Quienes pueden seguirme?</h4>
                                 <div>  </div>
                             </div>
                             <div class="switches-list -mt-8 is-large">
@@ -108,7 +117,7 @@
                         <hr>
                         <div class="flex justify-between items-center">
                             <div>
-                                <h4> Show my activities ?</h4>
+                                <h4> Mostrar mis actividades?</h4>
                                 <div>  </div>
                             </div>
                             <div class="switches-list -mt-8 is-large">
@@ -120,7 +129,7 @@
                         <hr>
                         <div class="flex justify-between items-center">
                             <div>
-                                <h4> Search engines?</h4>
+                                <h4> Motor de Búsqueda?</h4>
                                 <div>  </div>
                             </div>
                             <div class="switches-list -mt-8 is-large">
@@ -132,7 +141,7 @@
                         <hr>
                         <div class="flex justify-between items-center">
                             <div>
-                                <h4> Allow Commenting?</h4>
+                                <h4> Permitir Comentarios?</h4>
                                 <div>  </div>
                             </div>
                             <div class="switches-list -mt-8 is-large">
